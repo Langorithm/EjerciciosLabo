@@ -1,0 +1,6 @@
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/correrValgrind.dir
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/correrTests.dir
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/gtest.dir
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/slang/Desktop/taller_conjunto_sobre_ABB/cmake-build-debug/CMakeFiles/gtest_main.dir
