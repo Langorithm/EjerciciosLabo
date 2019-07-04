@@ -11,7 +11,7 @@ vector<int> _str2Vec(const string& s) {
 
 template <typename T>
 string_map<T>::string_map(){
-    _raiz = new Nodo;
+    _raiz = new Nodo();
     _size = 0;
 }
 
@@ -30,7 +30,14 @@ string_map<T>::~string_map(){
 
 template <typename T>
 T& string_map<T>::operator[](const string& clave){
-    // COMPLETAR
+    vector<int> vClave = _str2Vec(clave);
+    Nodo* p = _raiz;
+
+    for (int i = 0; i < vClave.size(); ++i) {
+        p = p->siguientes[i];
+    }
+
+
 }
 
 
@@ -53,12 +60,30 @@ int string_map<T>::count(const string& clave) const{
 
 template <typename T>
 const T& string_map<T>::at(const string& clave) const {
-    // COMPLETAR
+    assert(this->count(clave) == 1);
+
+    vector<int> vClave = _str2Vec(clave);
+    Nodo* p = _raiz;
+
+    for (int i = 0; i < vClave.size(); ++i) {
+        p = p->siguientes[i];
+    }
+
+    return **p->definicion;
 }
 
 template <typename T>
 T& string_map<T>::at(const string& clave) {
-    // COMPLETAR
+    assert(this->count(clave) == 1);
+
+    vector<int> vClave = _str2Vec(clave);
+    Nodo* p = _raiz;
+
+    for (int i = 0; i < vClave.size(); ++i) {
+        p = p->siguientes[i];
+    }
+
+    return **p->definicion;
 }
 
 template <typename T>
