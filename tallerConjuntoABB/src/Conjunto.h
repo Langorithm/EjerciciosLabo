@@ -60,9 +60,7 @@ class Conjunto
             Nodo* der;              // Puntero a la raíz del subárbol derecho.
 
                                     // El constructor, toma el elemento al que representa el nodo.
-            Nodo(const T& v) : valor(v){
-                izq = nullptr;
-                der = nullptr;
+            Nodo(const T& v) : izq(nullptr), valor(v), der(nullptr){
             };
 
             bool _esHoja(const Nodo &nodo){

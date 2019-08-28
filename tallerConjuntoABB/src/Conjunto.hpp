@@ -12,7 +12,9 @@ Conjunto<T>::~Conjunto() {
 }
 
 template <class T>
-bool Conjunto<T>::esVacio() const {return !_raiz;}
+bool Conjunto<T>::esVacio() const {
+    return !_raiz;
+}
 
 template <class T>
 bool Conjunto<T>::pertenece(const T& clave) const {
@@ -39,27 +41,42 @@ template <class T>
 void Conjunto<T>::insertar(const T& clave) {
 
     if (esVacio()){
-
         Nodo* nuevo = new Nodo(clave);
-
         _raiz = nuevo;
 
 
     } else {
 
-        Nodo* p = _raiz;
+        Nodo* p = _raiz;                            //Puntero para recorrer el árbol
 
         while (p){
-            if (clave == p->valor) return;
+            if (clave == p->valor){
+                return;                             //El elemento ya estaba presente
 
-            if (clave < p->valor) p = p->izq;
-            if (clave > p->valor) p = p->der;
+            } else if (clave < p->valor){   //Rama Izquierda
+
+                if (p->izq) {
+                    p = p->izq;                     //Recorro el árbol por izquierda
+                } else {
+                    Nodo* nuevo = new Nodo(clave);
+                    p->izq = nuevo;                 //Creo e inserto nodo.
+                    return;
+                }
+
+            } else {                        //Rama Derecha
+
+                if (p->der) {
+                    p = p->der;                     //Recorro el árbol por izquierda
+                } else {
+                    Nodo* nuevo = new Nodo(clave);
+                    p->der = nuevo;                 //Creo e inserto nodo.
+                    return;
+                }
+
+            }
         }
 
 
-        Nodo* nuevo = new Nodo(clave);
-
-        p = nuevo;
     }
 }
 

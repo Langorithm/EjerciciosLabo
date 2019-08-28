@@ -6,27 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/slang/Desktop/taller_conjunto_sobre_ABB/src/Conjunto.h
-assert.h
--
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/src/string_map.h
 string
 -
-iostream
+vector
 -
-Conjunto.hpp
-/home/slang/Desktop/taller_conjunto_sobre_ABB/src/Conjunto.hpp
+string_map.hpp
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/src/string_map.hpp
 
-/home/slang/Desktop/taller_conjunto_sobre_ABB/src/Conjunto.hpp
-Conjunto.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/src/Conjunto.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/src/string_map.hpp
 
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/conjunto-tests.cpp
-gtest-1.8.1/gtest.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/gtest-1.8.1/gtest.h
-../src/Conjunto.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/src/Conjunto.h
-
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/gtest-1.8.1/gtest.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/gtest-1.8.1/gtest.h
 limits
 -
 ostream
@@ -168,13 +158,19 @@ vector
 tuple
 -
 absl/strings/string_view.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/gtest-1.8.1/absl/strings/string_view.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/gtest-1.8.1/absl/strings/string_view.h
 absl/types/optional.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/gtest-1.8.1/absl/types/optional.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/gtest-1.8.1/absl/types/optional.h
 absl/types/variant.h
-/home/slang/Desktop/taller_conjunto_sobre_ABB/tests/gtest-1.8.1/absl/types/variant.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/gtest-1.8.1/absl/types/variant.h
 iosfwd
 -
 vector
 -
+
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/string_map_tests.cpp
+gtest-1.8.1/gtest.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/tests/gtest-1.8.1/gtest.h
+../src/string_map.h
+/home/slang/CLionProjects/algo2/taller_diccionario_sobre_trie/src/string_map.h
 
