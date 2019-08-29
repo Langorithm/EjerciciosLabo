@@ -55,7 +55,7 @@ class Conjunto
         struct Nodo
         {
 
-            T valor;                // El elemento al que representa el nodo.
+            T& valor;                // El elemento al que representa el nodo.
             Nodo* izq;              // Puntero a la raíz del subárbol izquierdo.
             Nodo* der;              // Puntero a la raíz del subárbol derecho.
 
@@ -63,7 +63,7 @@ class Conjunto
             Nodo(const T& v) : izq(nullptr), valor(v), der(nullptr){
             };
 
-            bool _esHoja(const Nodo &nodo){
+            bool _esHoja(){
                 return (!izq && !der);
             }
 

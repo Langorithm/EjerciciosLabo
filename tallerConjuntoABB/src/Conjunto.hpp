@@ -82,23 +82,43 @@ void Conjunto<T>::insertar(const T& clave) {
 
 template <class T>
 void Conjunto<T>::remover(const T& clave) {
-/*
-    if (clave == _raiz->valor){                     //Manejo el caso de la raiz por separado
 
-        if (_raiz->_esHoja()) _raiz = nullptr;          //Caso: Sin hijos
+    if (esVacio()) return;
 
-        if (_raiz->izq && _raiz->der){                  //Caso: Dos hijos
-
-            if (_raiz->_sucesorInmediato()->der) _raiz->_sucesorInmediato()->der
-        }
-    }
-
+    //Buscamos el elemento y le apuntamos
     Nodo* p = _raiz;
 
-    while (p){
-        if (p->izq)
+    while (!p || p->valor != clave){
+
+        if (!p) return;                         //No lo encontramos, termina
+
+        if (clave < p->valor)
+            p = p->izq;
+        else
+            p = p->der;
     }
-*/
+
+    if ( p->_esHoja() ){
+        delete p;
+
+
+    } else if (p->izq && p->der){
+        Nodo* sig = p->_sucesorInmediato();     //Encontramos un nodo que podría reemplazar al actual manteniendo el invariante
+        p->valor = sig->valor;                  //Pisamos el valor que queríamos remover
+        delete sig;                             //Borramos el nodo duplicado
+
+    } else if (p->izq){
+        p->izq = p->izq->izq;            //Puenteamos al nodo de la izquierda
+        p->valor = p->izq->valor;       //Pisamos el valor que queríamos remover y preservamos el siguiente
+        delete p->izq;                  //Borramos el nodo de la izquierda
+
+    } else {
+        p->der = p->der->der;            //Puenteamos al nodo de la derecha
+        p->valor = p->der->valor;       //Pisamos el valor que queríamos remover y preservamos el siguiente
+        delete p->der;                  //Borramos el nodo de la derecha
+
+    }
+
 }
 
 
@@ -106,6 +126,16 @@ template <class T>
 const T& Conjunto<T>::siguiente(const T& clave) {
     assert(pertenece(clave) && clave != maximo());
 
+    Nodo* p = _raiz;
+
+    while (clave != p->valor){
+        p = (clave < p->valor) ? p->izq : p->der;
+    }
+
+
+    Nodo* sig = p->_sucesorInmediato();
+
+    return sig->valor;
 
 }
 
