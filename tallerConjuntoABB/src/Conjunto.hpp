@@ -2,13 +2,12 @@
 #include "Conjunto.h"
 
 template <class T>
-Conjunto<T>::Conjunto() {
-    _raiz = nullptr;
+Conjunto<T>::Conjunto() : _raiz(nullptr), _size(0) {
 }
 
 template <class T>
 Conjunto<T>::~Conjunto() { 
-    // Completar
+
 }
 
 template <class T>
@@ -58,6 +57,7 @@ void Conjunto<T>::insertar(const T& clave) {
                 if (p->izq) {
                     p = p->izq;                     //Recorro el árbol por izquierda
                 } else {
+                    _size++;
                     Nodo* nuevo = new Nodo(clave);
                     p->izq = nuevo;                 //Creo e inserto nodo.
                     return;
@@ -68,6 +68,7 @@ void Conjunto<T>::insertar(const T& clave) {
                 if (p->der) {
                     p = p->der;                     //Recorro el árbol por izquierda
                 } else {
+                    _size++;
                     Nodo* nuevo = new Nodo(clave);
                     p->der = nuevo;                 //Creo e inserto nodo.
                     return;
@@ -98,9 +99,10 @@ void Conjunto<T>::remover(const T& clave) {
             p = p->der;
     }
 
+    _size--;
+
     if ( p->_esHoja() ){
         delete p;
-
 
     } else if (p->izq && p->der){
         Nodo* sig = p->_sucesorInmediato();     //Encontramos un nodo que podría reemplazar al actual manteniendo el invariante
@@ -167,8 +169,7 @@ const T& Conjunto<T>::maximo() const {
 
 template <class T>
 unsigned int Conjunto<T>::cardinal() const {
-
-
+    return _size;
 }
 
 template <class T>

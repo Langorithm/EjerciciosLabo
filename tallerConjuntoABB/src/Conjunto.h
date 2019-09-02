@@ -52,6 +52,8 @@ class Conjunto
          * Completar con lo que sea necesario...
          **/
 
+        int _size;
+
         struct Nodo
         {
 
