@@ -42,7 +42,7 @@ void Conjunto<T>::insertar(const T& clave) {
     if (esVacio()){
         Nodo* nuevo = new Nodo(clave);
         _raiz = nuevo;
-
+        _size = 1;
 
     } else {
 
@@ -84,42 +84,73 @@ void Conjunto<T>::insertar(const T& clave) {
 template <class T>
 void Conjunto<T>::remover(const T& clave) {
 
+    //Conjunto vacío
     if (esVacio()) return;
 
-    //Buscamos el elemento y le apuntamos
-    Nodo* p = _raiz;
+    //Busco el nodo a borrar y su padre y les apunto
 
-    while (!p || p->valor != clave){
+    Nodo* pN = _raiz;
+    Nodo* pPadre = _raiz;
 
-        if (!p) return;                         //No lo encontramos, termina
+    while (pN && pN->valor != clave){
 
-        if (clave < p->valor)
-            p = p->izq;
+        pPadre = pN;
+        if (clave < pN->valor) //Rama izquierda
+            pN = pN->izq;
         else
-            p = p->der;
+            pN = pN->der;      //Rama derecha
     }
 
-    _size--;
+    if (!pN) return;        //No lo encontramos, el programa termina
 
-    if ( p->_esHoja() ){
-        delete p;
+    _size--;    //Ajustamos el cardinal
 
-    } else if (p->izq && p->der){
-        Nodo* sig = p->_sucesorInmediato();     //Encontramos un nodo que podría reemplazar al actual manteniendo el invariante
-        p->valor = sig->valor;                  //Pisamos el valor que queríamos remover
-        delete sig;                             //Borramos el nodo duplicado
+    //Determino en qué caso de borrado estamos (0 vs 1 vs 2 hijos)
 
-    } else if (p->izq){
-        p->izq = p->izq->izq;            //Puenteamos al nodo de la izquierda
-        p->valor = p->izq->valor;       //Pisamos el valor que queríamos remover y preservamos el siguiente
-        delete p->izq;                  //Borramos el nodo de la izquierda
+    //sin hijos
+    if (pN->_esHoja()){
+        delete pN;
+        return;
+    }
 
+    //dos hijos. Se busca el sucesor inmediato y se usa para reemplazar el nodo a borrar
+    if (pN->izq && pN->der){
+
+        Nodo* pSucesor = pN->_sucesorInmediato();
+
+        Nodo* nuevo = new Nodo(
+                 pN->izq
+                ,pSucesor->valor
+                ,pN->der
+                );
+
+        if (pN->valor < pPadre->valor)
+            pPadre->izq = nuevo;
+        else
+            pPadre->der = nuevo;
+
+        delete pSucesor;
+        delete pN;
+        return;
+    }
+
+    //un hijo. Se puentea el nodo a borrar
+
+    if (pN->izq){
+        if (pN->valor < pPadre->valor)
+            pPadre->izq = pN->izq;
+        else
+            pPadre->der = pN->izq;
     } else {
-        p->der = p->der->der;            //Puenteamos al nodo de la derecha
-        p->valor = p->der->valor;       //Pisamos el valor que queríamos remover y preservamos el siguiente
-        delete p->der;                  //Borramos el nodo de la derecha
-
+        if (pN->valor < pPadre->valor)
+            pPadre->izq = pN->der;
+        else
+            pPadre->der = pN->der;
     }
+    //y se borra
+    delete pN;
+
+    return;
 
 }
 

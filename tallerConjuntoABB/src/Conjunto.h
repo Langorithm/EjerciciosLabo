@@ -52,17 +52,19 @@ class Conjunto
          * Completar con lo que sea necesario...
          **/
 
-        int _size;
+        unsigned int _size;
 
         struct Nodo
         {
-
-            T& valor;                // El elemento al que representa el nodo.
+            const T& valor;                // El elemento al que representa el nodo.
             Nodo* izq;              // Puntero a la raíz del subárbol izquierdo.
             Nodo* der;              // Puntero a la raíz del subárbol derecho.
 
                                     // El constructor, toma el elemento al que representa el nodo.
-            Nodo(const T& v) : izq(nullptr), valor(v), der(nullptr){
+            Nodo(Nodo* izq, const T &v, Nodo* der) : izq(izq), valor(v), der(der){
+            };
+
+            Nodo(const T &v) : izq(nullptr), valor(v), der(nullptr){
             };
 
             bool _esHoja(){
