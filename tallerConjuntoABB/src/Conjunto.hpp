@@ -6,8 +6,10 @@ Conjunto<T>::Conjunto() : _raiz(nullptr), _size(0) {
 }
 
 template <class T>
-Conjunto<T>::~Conjunto() { 
-
+Conjunto<T>::~Conjunto() {
+    while(!esVacio()){
+        remover(_raiz->valor);
+    }
 }
 
 template <class T>
@@ -105,16 +107,20 @@ void Conjunto<T>::remover(const T& clave) {
 
     _size--;    //Ajustamos el cardinal
 
+    bool borrarRaiz = pN == _raiz;
+
     //Determino en qué caso de borrado estamos (0 vs 1 vs 2 hijos)
 
     //sin hijos
     if (pN->_esHoja()){
+        if (borrarRaiz) _raiz = nullptr;
         delete pN;
         return;
     }
 
     //dos hijos. Se busca el sucesor inmediato y se usa para reemplazar el nodo a borrar
     if (pN->izq && pN->der){
+
 
         Nodo* pSucesor = pN->_sucesorInmediato();
 
@@ -123,6 +129,8 @@ void Conjunto<T>::remover(const T& clave) {
                 ,pSucesor->valor
                 ,pN->der
                 );
+
+        if (borrarRaiz) _raiz = nuevo;
 
         if (pN->valor < pPadre->valor)
             pPadre->izq = nuevo;
@@ -136,19 +144,31 @@ void Conjunto<T>::remover(const T& clave) {
 
     //un hijo. Se puentea el nodo a borrar
 
-    if (pN->izq){
-        if (pN->valor < pPadre->valor)
-            pPadre->izq = pN->izq;
-        else
-            pPadre->der = pN->izq;
+    if (borrarRaiz){
+
+        if (pN -> izq){
+            _raiz = pN->izq;
+
+        } else {
+            _raiz = pN->der;
+        }
+        delete pN;
     } else {
-        if (pN->valor < pPadre->valor)
-            pPadre->izq = pN->der;
-        else
-            pPadre->der = pN->der;
+
+        if (pN->izq) {
+            if (pN->valor < pPadre->valor)
+                pPadre->izq = pN->izq;
+            else
+                pPadre->der = pN->izq;
+        } else {
+            if (pN->valor < pPadre->valor)
+                pPadre->izq = pN->der;
+            else
+                pPadre->der = pN->der;
+        }
+        //y se borra
+        delete pN;
     }
-    //y se borra
-    delete pN;
 
     return;
 
@@ -202,6 +222,7 @@ template <class T>
 unsigned int Conjunto<T>::cardinal() const {
     return _size;
 }
+
 
 template <class T>
 void Conjunto<T>::mostrar(std::ostream&) const {

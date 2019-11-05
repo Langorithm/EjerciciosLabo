@@ -18,6 +18,21 @@ TEST(conjunto_test, test_insertar_un_valor) {
 }
 
 
+TEST(conjunto_test, test_insertar_cinco_valores_bis) {
+    Conjunto<int> c;
+    int cinco = 5;
+    int cuatro = 4;
+    int siete = 7;
+    int seis = 6;
+    int ocho = 8;
+    c.insertar(cinco);
+    c.insertar(cuatro);
+    c.insertar(siete);
+    c.insertar(seis);
+    c.insertar(ocho);
+    EXPECT_EQ(c.cardinal(), 5);
+}
+
 TEST(conjunto_test, test_insertar_cinco_valores) {
     Conjunto<int> c;
     c.insertar(5);

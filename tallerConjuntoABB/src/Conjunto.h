@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,19 +49,16 @@ class Conjunto
 
     private:
 
-        /**
-         * Completar con lo que sea necesario...
-         **/
-
-        unsigned int _size;
-
+        //Definición de Nodo de ABB
         struct Nodo
         {
-            const T& valor;                // El elemento al que representa el nodo.
+            const T valor;                // El elemento al que representa el nodo.
             Nodo* izq;              // Puntero a la raíz del subárbol izquierdo.
             Nodo* der;              // Puntero a la raíz del subárbol derecho.
 
                                     // El constructor, toma el elemento al que representa el nodo.
+
+            //Constructores
             Nodo(Nodo* izq, const T &v, Nodo* der) : izq(izq), valor(v), der(der){
             };
 
@@ -71,6 +69,7 @@ class Conjunto
                 return (!izq && !der);
             }
 
+            //Funciones útiles
             Nodo* _sucesorInmediato(){
 
                 assert(der);
@@ -89,6 +88,9 @@ class Conjunto
 
         // Puntero a la raíz de nuestro árbol.
         Nodo* _raiz;
+
+        // Cardinal
+        unsigned int _size;
 
 
 };

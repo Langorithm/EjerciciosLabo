@@ -30,7 +30,7 @@ CMAKE_CODEBLOCKS_EXECUTABLE:FILEPATH=/usr/bin/codeblocks
 
 //Additional command line arguments when CodeBlocks invokes make.
 // Enter e.g. -j<some_number> to get parallel builds
-CMAKE_CODEBLOCKS_MAKE_ARGUMENTS:STRING=-j6
+CMAKE_CODEBLOCKS_MAKE_ARGUMENTS:STRING=-j4
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -210,6 +210,12 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
+
+//Value Computed by CMake
+tallerConjuntoABB_BINARY_DIR:STATIC=/home/slang/CLionProjects/algo2/tallerConjuntoABB/cmake-build-debug
+
+//Value Computed by CMake
+tallerConjuntoABB_SOURCE_DIR:STATIC=/home/slang/CLionProjects/algo2/tallerConjuntoABB
 
 //Value Computed by CMake
 taller_abb_BINARY_DIR:STATIC=/home/slang/CLionProjects/algo2/tallerConjuntoABB/cmake-build-debug
